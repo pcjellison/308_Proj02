@@ -10,6 +10,7 @@ typedef struct node
 	struct node* right;	//points to right node
 }node;
 
+
 node* insert(int key)
 {
 	node *newNode = (node*)malloc(sizeof(node));
@@ -25,15 +26,49 @@ node* insert(int key)
 	return newNode;
 }
 
-void search()
+int search(node *central, int value)
 {
-
+	while (central != NULL)
+	{
+		if (value > central->key)
+		{
+			return search(central->right, value);
+		}
+		else if (value < central->key)
+		{
+			return search(central->left, value);
+		}
+		else
+		{
+			return;
+		}
+	}
 }
 
-void traverse()
+void traverse(node* node)
 {
 	//check leftmost node
 	//check right node
 	//check central node
-	//repeat
+	//repeat & print
+
+	if (node == NULL)	//if the node doesn't exist
+	{
+		return;
+	}
+
+	if (node->left)	//if left node does exist
+	{
+		traverse(node->left);
+	}
+
+	int num = node->key;
+	char buff[10];
+	sprintf(buff, "%d", num);		//print node
+
+	if (node->right)	//if right node does exist
+	{
+		traverse(node->right);
+	}
+	
 }
