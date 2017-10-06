@@ -11,19 +11,21 @@ typedef struct node
 }node;
 
 
-node* insert(int key)
+void insert(int num)
 {
-	node *newNode = (node*)malloc(sizeof(node));
+	node *n = (node*)malloc(sizeof(node));
+	n->key = num;
+	n->left = NULL;
+	n->right = NULL;
 
-	if (newNode == NULL)
+	if (num < n->key)
 	{
-
+		add(&n->left, num);
 	}
-
-	newNode->key = key;
-	newNode->left = NULL;
-	newNode->right = NULL;
-	return newNode;
+	else
+	{
+		add(&n->right, num);
+	}
 }
 
 int search(node *central, int value)
