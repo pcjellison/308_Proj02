@@ -54,7 +54,11 @@ void searchReturn(int searchResult, int nodeKey)
 	}
 }
 
-void inorderOption(char str)
+void inorderOption(char* str)
 {
-	printf(str);
+	for (int i = 0; i < strlen(str); i++)
+	{
+		printf_s("%c", str[i]);
+	}
+	printf_s("\n");
 }

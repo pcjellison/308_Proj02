@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="proj2.c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="bst.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="io.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="proj2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
