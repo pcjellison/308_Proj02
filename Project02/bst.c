@@ -6,71 +6,63 @@
 typedef struct node
 {
 	int key;	//stores node's key/value
-	struct node* left;	//points to left node
-	struct node* right;	//points to right node
+	struct node *left;	//points to left node
+	struct node *right;	//points to right node
 }node;
 
 
-void insert(int num)
+struct node* insert(struct node *newNode, int num)
 {
-	node *n = (node*)malloc(sizeof(node));
-	n->key = num;
-	n->left = NULL;
-	n->right = NULL;
-
-	if (num < n->key)
+	if (newNode == NULL)
 	{
-		add(&n->left, num);
+		newNode = malloc(sizeof(struct node));
+		newNode->key = num;
+		newNode->left = NULL;
+		newNode->right = NULL;
+		return newNode;
+	}
+	if (num < newNode->key)
+	{
+		newNode->left = insert(newNode->left, num);
+	}
+	else if (num > newNode->key)
+	{
+		newNode->right = insert(newNode->right, num);
+	}
+	return newNode;
+}
+
+int search(struct node* central, int value)
+{
+	if (central->key == value)
+	{
+		return 1;
+	}
+	else if (central == NULL)
+	{
+		return 0;
+	}
+	
+	if (central->key < value)
+	{
+		search(central->right, value);
 	}
 	else
 	{
-		add(&n->right, num);
+		search(central->left, value);
 	}
 }
 
-int search(node *central, int value)
+char* traverse(struct node* node)
 {
-	while (central != NULL)
-	{
-		if (value > central->key)
-		{
-			return search(central->right, value);
-		}
-		else if (value < central->key)
-		{
-			return search(central->left, value);
-		}
-		else
-		{
-			return;
-		}
-	}
-}
-
-void traverse(node* node)
-{
-	//check leftmost node
-	//check right node
-	//check central node
-	//repeat & print
-
-	if (node == NULL)	//if the node doesn't exist
-	{
-		return;
-	}
-
-	if (node->left)	//if left node does exist
+	char buff[100];
+	int i = 0;
+	if (node != NULL)
 	{
 		traverse(node->left);
-	}
-
-	int num = node->key;
-	char buff[10];
-	sprintf(buff, "%d", num);		//print node
-
-	if (node->right)	//if right node does exist
-	{
+		sprintf_s((buff+i), 100, "%d ", node->key);
+		i+=2;
 		traverse(node->right);
 	}
-	
+	return buff;
 }

@@ -4,60 +4,57 @@
 #include <stdlib.h>
 
 
-int display()
+char display()
 {
-	int correctInput = 0;		//correct input is false
 	char choice;
-	while (correctInput == 0)
+	printf_s("Enter (i)nsert, (s)earch, inorder (t)raversal, or (q): \n");
+	scanf_s("%c", &choice);
+	if (choice == 'i' || choice == 'I')
 	{
-		printf_s("Enter (i)nsert, (s)earch, inorder (t)raversal, or (q): \n");
-		scanf_s("%c", &choice);
-		if (choice == 'i' || choice == 'I')
-		{
-			insertOption();
-			correctInput = 1;
-		}
-		else if (choice == 's' || choice == 'S')
-		{
-			searchOption();
-			correctInput = 1;
-		}
-		else if (choice == 't' || choice == 'T')
-		{
-			inorderOption();
-			correctInput = 1;
-
-		}
-		else if (choice == 'q' || choice == 'Q')
-		{
-			quitOption();
-			correctInput = 1;
-		}
+		return 'i';
 	}
-
+	else if (choice == 's' || choice == 'S')
+	{
+		return 's';
+	}
+	else if (choice == 't' || choice == 'T')
+	{
+		return 't';
+	}
+	else if (choice == 'q' || choice == 'Q')
+	{
+		return 'q';
+	}
 }
-void insertOption()
+int insertOption()
 {
-	int num;
+	int num = 0;
 	printf_s("Enter a number to insert: \n");
-	scanf_s("%d", num);
-	insert(num);
+	scanf_s("%d", &num);
+	return num;
 }
 
-void searchOption()
+int searchOption()
 {
-	int searchNum;
+	int searchNum = 0;
 	printf_s("Enter a number to search for: ");
-	scanf_s("%d", searchNum);
-	search(searchNum);
+	scanf_s("%d", &searchNum);
+	return searchNum;
 }
 
-void inorderOption()
+void searchReturn(int searchResult, int nodeKey)
 {
-	//print results of traverse
+	if (searchResult == 1)
+	{
+		printf_s("%d is in the tree\n", nodeKey);
+	}
+	else
+	{
+		printf_s("%d is not in the tree\n", nodeKey);
+	}
 }
 
-void quitOption()
+void inorderOption(char str)
 {
-	getchar();
+	printf(str);
 }
